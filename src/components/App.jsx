@@ -1,13 +1,13 @@
 import { Component } from 'react';
 import { fetchImages } from 'api/Api';
-import '../index.css';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 import { Searchbar } from './SearchBar/SearchBar';
-//import { Section } from './Section/Section';
+import { Section } from './Section/Section';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-//import { ButtonLoadMore } from './ButtonLoadMore/ButtonLoadMore';
-//import { Modal } from './Modal/Modal';
-//import { Loader } from './Loader/Loader';
+import { Button } from './Button/Button';
+import { Modal } from './Modal/Modal';
+import { Loader } from './Loader/Loader.jsx';
 
 export class App extends Component {
   state = {
@@ -100,22 +100,26 @@ export class App extends Component {
           onClickClear={this.onClickClear}
           query={this.state.query}
         />
-        {/* <Section>
+        <Section>
           {isLoading && <Loader />}
           {noResults && (
-            <p className="alertStyle">
-              No images found. Please try another query.
-            </p>
-          )} */}
-          <ImageGallery images={images} onImageClick={this.onImageClick} />
-          {/* {error && (
-            <p className="alertStyle">
-              Whoops, something went wrong: {error.message}
-            </p>
+            Report.warning(
+              'Warning',
+              'No images found. Please try another query.',
+              'Okay',
+            )         
+          )}
+        <ImageGallery images={images} onImageClick={this.onImageClick} />
+          {error && (
+             Report.warning(
+              'Warning',
+              'Something went wrong',
+              'Okay',
+            )          
           )}
         </Section>
         {page < lastPage && !isLoading && !error ? (
-          <ButtonLoadMore
+          <Button
             label={'Load more'}
             handleLoadMore={this.handleLoadMore}
           />
@@ -124,7 +128,7 @@ export class App extends Component {
         )}
         {showModal && (
           <Modal onClose={this.onClose} largeImageURL={largeImageURL} />
-        )} */}
+        )}
       </div>
     );
   }

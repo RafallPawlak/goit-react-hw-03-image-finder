@@ -1,6 +1,8 @@
 import { Component } from 'react';
-import style from './ImageGalleryItem.module.css';
 import PropTypes from 'prop-types';
+
+import style from './ImageGalleryItem.module.css';
+
 
 export class ImageGalleryItem extends Component {
   render() {
