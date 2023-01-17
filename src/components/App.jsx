@@ -17,17 +17,15 @@ export class App extends Component {
     isLoading: false,
     lastPage: 1,
     error: null,
-    showModal: false,
-    largeImageURL: '',
+    modal: {
+      showModal: false,
+      largeImageURL: ''
+    },
     noResults: false,
   };
 
   handleChange = event => {
     this.setState({ query: event.target.value });
-  };
-
-  onClickClear = () => {
-    this.setState({ query: '' });
   };
 
   fetchImagesByQuery = async searchQuery => {
@@ -97,7 +95,6 @@ export class App extends Component {
         <Searchbar
           onSubmit={this.handleSubmit}
           onChange={this.handleChange}
-          onClickClear={this.onClickClear}
           query={this.state.query}
         />
         <Section>
